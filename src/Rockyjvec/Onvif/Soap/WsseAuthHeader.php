@@ -13,8 +13,8 @@ function __construct($user, $pass) {
 
     $auth = new \stdClass();
     $auth->Username = new \SoapVar($user, XSD_STRING, NULL, $this->wss_ns, NULL, $this->wss_ns);
-    $auth->Password = new \SoapVar($pass, XSD_STRING, NULL, $this->wss_ns, NULL, $this->wss_ns);
-    $auth->Nonce = new \SoapVar($passdigest, XSD_STRING, NULL, $this->wss_ns, NULL, $this->wss_ns);
+    $auth->Password = new \SoapVar($passdigest, XSD_STRING, NULL, $this->wss_ns, NULL, $this->wss_ns);
+    $auth->Nonce = new \SoapVar(base64_encode(pack('H*', $nonce)), XSD_STRING, NULL, $this->wss_ns, NULL, $this->wss_ns);
     $auth->Created = new \SoapVar($created, XSD_STRING, NULL, $this->wss_ns, NULL, $this->wsu_ns);
 
     $username_token = new \stdClass();
